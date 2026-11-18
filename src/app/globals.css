@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens — palette derived from the primary visual reference (lavender canvas, ink-navy, coral). */
+:root {
+  --background: #f4f6fe;
+  --surface: #e9eefc;
+  --card: #ffffff;
+  --ink: #1e2433;
+  --primary: #1e2433;
+  --primary-foreground: #ffffff;
+  --accent: #f2677f;
+  --accent-text: #c93a57;
+  --accent-soft: #fde3e8;
+  --glow-pink: #f7b6c2;
+  --glow-blue: #aebcf7;
+  --muted: #5b6478;
+  --border: #dce3f7;
+  --star: #f5b83d;
+  --success: #15803d;
+  --success-soft: #dcfce7;
+  --warning: #a16207;
+  --warning-soft: #fef3c7;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --info: #1d4ed8;
+  --info-soft: #dbeafe;
+  --ring: #6a7ae6;
+}
+
+.dark {
+  --background: #0f1320;
+  --surface: #151b2e;
+  --card: #181f33;
+  --ink: #eef1fa;
+  --primary: #eef1fa;
+  --primary-foreground: #0f1320;
+  --accent: #f2677f;
+  --accent-text: #f58ca0;
+  --accent-soft: #3a1f2b;
+  --glow-pink: #6d2a3d;
+  --glow-blue: #2c3a7a;
+  --muted: #9aa4bd;
+  --border: #2a3350;
+  --star: #f5b83d;
+  --success: #4ade80;
+  --success-soft: #14301f;
+  --warning: #facc15;
+  --warning-soft: #3a2f0b;
+  --danger: #f87171;
+  --danger-soft: #3b1414;
+  --info: #7aa2ff;
+  --info-soft: #14244a;
+  --ring: #8c9aff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-glow-pink: var(--glow-pink);
+  --color-glow-blue: var(--glow-blue);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-star: var(--star);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Soft blurred colour glow behind illustrations (reference visual signature). */
+.glow {
+  background:
+    radial-gradient(40% 50% at 30% 55%, var(--glow-pink) 0%, transparent 70%),
+    radial-gradient(45% 55% at 72% 45%, var(--glow-blue) 0%, transparent 72%);
+  filter: blur(28px);
+  opacity: 0.75;
+}
