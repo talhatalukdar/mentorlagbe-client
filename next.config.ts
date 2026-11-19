@@ -5,6 +5,8 @@ import type { NextConfig } from "next";
 const API_URL = process.env.API_URL ?? "http://localhost:5000";
 
 const nextConfig: NextConfig = {
+  // Tailwind CSS v4 is processed by its Turbopack loader (Next 16 uses Turbopack for dev and build).
+  turbopack: { rules: { "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" } } },
   async rewrites() {
     return [{ source: "/api/:path*", destination: `${API_URL}/api/:path*` }];
   },
