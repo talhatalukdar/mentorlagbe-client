@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Monitor, Moon, Sun } from "lucide-react";
 import * as Dropdown from "@radix-ui/react-dropdown-menu";
@@ -12,8 +12,7 @@ const options = [
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const Current = mounted && resolvedTheme === "dark" ? Moon : Sun;
   return (
     <Dropdown.Root>

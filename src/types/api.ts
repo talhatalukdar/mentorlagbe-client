@@ -17,12 +17,12 @@ export interface Tuition {
   monthlyFee: number; daysPerWeek: number; bannerImage: string; description: string; schedule?: string; requirements?: string;
   tutorName: string; tutorEmail: string; approvalStatus: ApprovalStatus; isActive: boolean; views?: number;
   ratingAvg?: number; ratingCount?: number; createdAt: string;
-  tutor?: { name: string; image: string | null; bio: string; education: string; experience: string; isVerified: boolean } | null;
+  tutor?: { name: string; image: string | null; bio: string; education: string; experience: string; isVerified: boolean; isPro?: boolean } | null;
 }
 export interface Application {
   _id: string; tuitionId: string; tuitionTitle: string; subject: string; monthlyFee: number; tutorEmail: string;
   studentName: string; studentEmail: string; studentPhone: string; preferredSchedule: string; studentNote: string;
-  status: ApplicationStatus; appliedAt: string;
+  status: ApplicationStatus; isPriority?: boolean; appliedAt: string;
 }
 export interface Payment {
   _id: string; userEmail: string; userName: string; userRole: Role; planName: string; amount: number; currency: string;

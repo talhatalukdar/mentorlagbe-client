@@ -32,7 +32,7 @@ export default function Applicants() {
           <tbody>
             {list.data.items.map((a) => (
               <tr key={a._id} className="hover:bg-surface/50">
-                <Td><p className="font-medium">{a.studentName}</p><p className="text-xs text-muted">{a.studentEmail}</p></Td>
+                <Td><p className="flex items-center gap-2 font-medium">{a.studentName}{a.isPriority && <Badge tone="accent">Priority</Badge>}</p><p className="text-xs text-muted">{a.studentEmail}</p></Td>
                 <Td>{a.studentPhone}</Td>
                 <Td className="max-w-[12rem]"><p className="truncate">{a.tuitionTitle}</p></Td>
                 <Td className="max-w-xs"><p className="text-xs text-muted">{a.preferredSchedule}</p><p className="line-clamp-2">{a.studentNote}</p></Td>

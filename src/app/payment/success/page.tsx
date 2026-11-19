@@ -10,10 +10,11 @@ type State = { kind: "loading" } | { kind: "paid" } | { kind: "unpaid" } | { kin
 
 function Verify() {
   const sessionId = useSearchParams().get("session_id");
-  const [state, setState] = useState<State>({ kind: "loading" });
+  const [fetched, setState] = useState<State>({ kind: "loading" });
+  const state: State = sessionId ? fetched : { kind: "error", message: "No checkout session was found in this link." };
   const qc = useQueryClient();
   useEffect(() => {
-    if (!sessionId) { setState({ kind: "error", message: "No checkout session was found in this link." }); return; }
+    if (!sessionId) return;
     // We never trust the redirect itself: the server asks Stripe whether this session is actually paid.
     api<{ paid: boolean; plan: string }>("/payments/verify", { query: { session_id: sessionId } })
       .then((r) => { setState(r.data.paid ? { kind: "paid" } : { kind: "unpaid" }); void qc.invalidateQueries({ queryKey: ["me"] }); })

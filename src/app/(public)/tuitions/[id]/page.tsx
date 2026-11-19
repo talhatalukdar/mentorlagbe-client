@@ -65,7 +65,7 @@ export default async function TuitionDetailsPage({ params }: Props) {
             <h2 className="text-lg font-semibold">About the tutor</h2>
             <div className="mt-4 flex items-center gap-3">
               <Avatar user={{ name: t.tutor?.name ?? t.tutorName, image: t.tutor?.image ?? null }} size={52} />
-              <div><p className="flex items-center gap-1.5 font-semibold">{t.tutor?.name ?? t.tutorName}{t.tutor?.isVerified && <BadgeCheck className="size-4 text-info" aria-label="Verified tutor" />}</p>{t.tutor?.education && <p className="text-sm text-muted">{t.tutor.education}</p>}</div>
+              <div><p className="flex items-center gap-1.5 font-semibold">{t.tutor?.name ?? t.tutorName}{t.tutor?.isVerified && <BadgeCheck className="size-4 text-info" aria-label="Verified tutor" />}{t.tutor?.isPro && <Badge tone="accent">Pro</Badge>}</p>{t.tutor?.education && <p className="text-sm text-muted">{t.tutor.education}</p>}</div>
             </div>
             {t.tutor?.experience && <p className="mt-4 text-sm"><strong>Experience:</strong> <span className="text-muted">{t.tutor.experience}</span></p>}
             {t.tutor?.bio && <p className="mt-2 text-sm leading-relaxed text-muted">{t.tutor.bio}</p>}

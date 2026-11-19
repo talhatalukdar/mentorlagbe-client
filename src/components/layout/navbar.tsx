@@ -25,16 +25,17 @@ export function Navbar() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user as SessionUser | undefined;
-  const [open, setOpen] = useState(false);
+  // The menu is "open" only for the page it was opened on, so navigating closes it without an effect.
+  const [openFor, setOpenFor] = useState<string | null>(null);
+  const open = openFor === pathname;
+  const setOpen = (fn: (o: boolean) => boolean) => setOpenFor(fn(open) ? pathname : null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  useEffect(() => setOpen(false), [pathname]);
 
   const active = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 

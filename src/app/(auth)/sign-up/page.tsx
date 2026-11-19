@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -24,8 +24,8 @@ type Values = z.infer<typeof schema>;
 export default function SignUpPage() {
   const router = useRouter();
   const [show, setShow] = useState(false);
-  const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<Values>({ resolver: zodResolver(schema), defaultValues: { role: "student" } });
-  const role = watch("role");
+  const { register, handleSubmit, control, setValue, formState: { errors, isSubmitting } } = useForm<Values>({ resolver: zodResolver(schema), defaultValues: { role: "student" } });
+  const role = useWatch({ control, name: "role" });
 
   async function onSubmit(v: Values) {
     const res = await authClient.signUp.email({ name: v.name, email: v.email, password: v.password, role: v.role } as Parameters<typeof authClient.signUp.email>[0]);

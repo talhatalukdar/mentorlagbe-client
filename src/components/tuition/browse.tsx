@@ -20,10 +20,9 @@ export function Browse() {
   const pathname = usePathname();
   const sp = useSearchParams();
   const params = Object.fromEntries(KEYS.map((k) => [k, sp.get(k) ?? ""])) as Record<(typeof KEYS)[number], string>;
-  const [search, setSearch] = useState(params.search);
+  const [typed, setTyped] = useState<string | null>(null);
+  const search = typed ?? params.search;
   const [showFilters, setShowFilters] = useState(false);
-
-  useEffect(() => setSearch(params.search), [params.search]);
 
   const update = (patch: Partial<Record<(typeof KEYS)[number], string>>) => {
     const next = new URLSearchParams(sp.toString());
@@ -34,11 +33,11 @@ export function Browse() {
 
   // Debounce typing → URL
   useEffect(() => {
-    if (search === params.search) return;
-    const id = setTimeout(() => update({ search }), 400);
+    if (typed === null || typed === params.search) return;
+    const id = setTimeout(() => { update({ search: typed }); setTyped(null); }, 400);
     return () => clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [typed]);
 
   const { data, isPending, isError, error, refetch, isFetching } = useQuery({
     queryKey: ["tuitions", params],
@@ -60,7 +59,7 @@ export function Browse() {
         <div className="flex gap-3">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted" aria-hidden />
-            <Input aria-label="Search by title or subject" placeholder="Search by title or subject" value={search} onChange={(e) => setSearch(e.target.value)} className="pl-11" />
+            <Input aria-label="Search by title or subject" placeholder="Search by title or subject" value={search} onChange={(e) => setTyped(e.target.value)} className="pl-11" />
           </div>
           <Button variant="outline" className="lg:hidden" onClick={() => setShowFilters((s) => !s)} aria-expanded={showFilters}><SlidersHorizontal className="size-4" />Filters{activeFilters ? ` (${activeFilters})` : ""}</Button>
         </div>
