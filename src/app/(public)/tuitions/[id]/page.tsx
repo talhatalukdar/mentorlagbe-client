@@ -7,7 +7,7 @@ import { serverApi } from "@/lib/api";
 import type { Tuition } from "@/types/api";
 import { formatDate, formatFee } from "@/lib/utils";
 import { Badge } from "@/components/ui/misc";
-import { SubjectVisual } from "@/components/tuition/subject-visual";
+import { SubjectImage } from "@/components/tuition/subject-image";
 import { ApplyPanel } from "@/components/tuition/apply-panel";
 import { ReviewSection } from "@/components/tuition/review-section";
 import { SaveButton } from "@/components/tuition/save-button";
@@ -39,7 +39,7 @@ export default async function TuitionDetailsPage({ params }: Props) {
       <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
         <div>
           <div className="relative aspect-[16/8] overflow-hidden rounded-3xl">
-            {t.bannerImage ? <Image src={t.bannerImage} alt={`${t.title} banner`} fill priority sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" /> : <SubjectVisual subject={t.subject} className="size-full" />}
+            {t.bannerImage ? <Image src={t.bannerImage} alt={`${t.title} banner`} fill priority sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" /> : <SubjectImage subject={t.subject} alt={`${t.subject} class`} priority sizes="(min-width:1024px) 60vw, 100vw" />}
             <div className="absolute right-4 top-4"><SaveButton tuitionId={t._id} className="size-11" /></div>
           </div>
           <div className="mt-6 flex flex-wrap gap-2"><Badge tone="accent">{t.subject}</Badge><Badge tone={t.mode === "Online" ? "info" : "success"}>{t.mode}</Badge><Badge>{t.classLevel}</Badge></div>

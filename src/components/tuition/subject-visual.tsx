@@ -1,26 +1,24 @@
-import { Atom, BookOpen, Calculator, Code2, Dna, FlaskConical, Landmark, Languages, Laptop, TrendingUp } from "lucide-react";
 
-const map: Record<string, { Icon: typeof Atom; from: string; to: string }> = {
-  Mathematics: { Icon: Calculator, from: "#c7d2fe", to: "#e0e7ff" },
-  Physics: { Icon: Atom, from: "#bfdbfe", to: "#dbeafe" },
-  Chemistry: { Icon: FlaskConical, from: "#fbcfe8", to: "#fce7f3" },
-  Biology: { Icon: Dna, from: "#bbf7d0", to: "#dcfce7" },
-  English: { Icon: Languages, from: "#fde68a", to: "#fef3c7" },
-  ICT: { Icon: Laptop, from: "#c7d2fe", to: "#ddd6fe" },
-  Programming: { Icon: Code2, from: "#a5b4fc", to: "#c7d2fe" },
-  Accounting: { Icon: Landmark, from: "#fed7aa", to: "#ffedd5" },
-  Economics: { Icon: TrendingUp, from: "#fecdd3", to: "#ffe4e6" },
+const tint: Record<string, [string, string]> = {
+  Mathematics: ["#b9b4ff", "#e1ddff"],
+  Physics: ["#a8d6ff", "#d9eeff"],
+  Chemistry: ["#ffb3cd", "#ffe0ec"],
+  Biology: ["#a6ecd2", "#d9f7ec"],
+  English: ["#ffe08a", "#fff3c9"],
+  ICT: ["#b8c4ff", "#dde3ff"],
+  Programming: ["#c3a8ff", "#e6dcff"],
+  Accounting: ["#ffc9a0", "#ffe9d6"],
+  Economics: ["#ffb8b8", "#ffe1e1"],
 };
 
-export const subjectIcon = (s: string) => (map[s] ?? { Icon: BookOpen }).Icon;
-
-/** Used when a tuition has no uploaded banner. Honest, deterministic placeholder (not a fake photo). */
+/** Fallback shown only when a subject photo is missing or fails to load: a soft colour wash with the subject name (no icons). */
 export function SubjectVisual({ subject, className = "" }: { subject: string; className?: string }) {
-  const m = map[subject] ?? { Icon: BookOpen, from: "#e0e7ff", to: "#f1f5f9" };
+  const [from, to] = tint[subject] ?? ["#d7d0ff", "#f0ecff"];
   return (
-    <div className={`relative grid place-items-center overflow-hidden ${className}`} style={{ background: `linear-gradient(135deg, ${m.from}, ${m.to})` }} aria-hidden>
-      <div className="absolute -right-6 -top-6 size-28 rounded-full bg-white/40 blur-xl" />
-      <m.Icon className="size-14 text-[#1e2433]/80" strokeWidth={1.4} />
+    <div className={`relative grid place-items-center overflow-hidden ${className}`} style={{ background: `linear-gradient(135deg, ${from}, ${to})` }} aria-hidden>
+      <div className="absolute -right-8 -top-8 size-32 rounded-full bg-white/40 blur-2xl" />
+      <span className="px-4 text-center font-serif text-4xl leading-none text-[#1d1a45]/35 sm:text-5xl">{subject}</span>
     </div>
   );
 }
+

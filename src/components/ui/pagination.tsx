@@ -15,7 +15,7 @@ function pages(current: number, total: number): (number | "…")[] {
 
 export function Pagination({ meta, onChange }: { meta: PageMeta; onChange: (page: number) => void }) {
   if (meta.totalPages <= 1) return null;
-  const btn = "grid h-10 min-w-10 cursor-pointer place-items-center rounded-full border border-border bg-card px-3 font-mono text-sm transition-colors hover:border-ink/40 disabled:pointer-events-none disabled:opacity-40";
+  const btn = "grid h-10 min-w-10 cursor-pointer place-items-center rounded-full border border-border bg-card px-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40";
   return (
     <nav aria-label="Pagination" className="flex flex-wrap items-center justify-center gap-2">
       <button className={cn(btn, "gap-1")} disabled={!meta.hasPreviousPage} onClick={() => onChange(meta.page - 1)}><ChevronLeft className="size-4" />Previous</button>

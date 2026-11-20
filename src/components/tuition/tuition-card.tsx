@@ -5,17 +5,17 @@ import { Badge } from "@/components/ui/misc";
 import { ButtonLink } from "@/components/ui/button";
 import { formatFee } from "@/lib/utils";
 import type { Tuition } from "@/types/api";
-import { SubjectVisual } from "./subject-visual";
+import { SubjectImage } from "./subject-image";
 import { SaveButton } from "./save-button";
 
 export function TuitionCard({ t }: { t: Tuition }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-xl hover:shadow-ink/5">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow] duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/15">
       <div className="relative aspect-[16/9] overflow-hidden">
         {t.bannerImage ? (
-          <Image src={t.bannerImage} alt={`${t.title} banner`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <Image src={t.bannerImage} alt={`${t.title} banner`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
         ) : (
-          <SubjectVisual subject={t.subject} className="size-full transition-transform duration-500 group-hover:scale-105" />
+          <SubjectImage subject={t.subject} alt={`${t.subject} class`} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="transition-transform duration-500 group-hover:scale-[1.04]" />
         )}
         <div className="absolute left-3 top-3"><Badge tone={t.mode === "Online" ? "info" : "success"} className="bg-card/90 backdrop-blur">{t.mode === "Online" ? <Wifi className="size-3" /> : <Building2 className="size-3" />}{t.mode}</Badge></div>
         <div className="absolute right-3 top-3"><SaveButton tuitionId={t._id} /></div>
@@ -26,7 +26,7 @@ export function TuitionCard({ t }: { t: Tuition }) {
           <Badge>{t.classLevel}</Badge>
           {!!t.ratingCount && <span className="ml-auto inline-flex items-center gap-1 text-xs font-semibold"><Star className="size-3.5 fill-star text-star" />{t.ratingAvg?.toFixed(1)} <span className="font-normal text-muted">({t.ratingCount})</span></span>}
         </div>
-        <h3 className="mt-3 line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug"><Link href={`/tuitions/${t._id}`} className="after:absolute after:inset-0 hover:text-accent-text" style={{ position: "static" }}>{t.title}</Link></h3>
+        <h3 className="mt-3 line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug"><Link href={`/tuitions/${t._id}`} className="after:absolute after:inset-0 hover:text-primary" style={{ position: "static" }}>{t.title}</Link></h3>
         <ul className="mt-3 space-y-1.5 text-sm text-muted">
           <li className="flex items-center gap-2"><MapPin className="size-4 shrink-0" aria-hidden /><span className="truncate">{t.location}</span></li>
           <li className="flex items-center gap-2"><CalendarDays className="size-4 shrink-0" aria-hidden />{t.daysPerWeek} days / week</li>

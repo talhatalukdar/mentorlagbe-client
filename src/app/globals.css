@@ -1,24 +1,31 @@
 @import "tailwindcss";
-@import "@fontsource-variable/dm-sans";
-@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource/instrument-serif";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Design tokens — palette derived from the primary visual reference (lavender canvas, ink-navy, coral). */
 :root {
-  --background: #f4f6fe;
-  --surface: #e9eefc;
+  --background: #f6f3ff;
+  --surface: #ece6ff;
   --card: #ffffff;
-  --ink: #1e2433;
-  --primary: #1e2433;
+  --ink: #1d1a45;
+  --primary: #6c4df6;
   --primary-foreground: #ffffff;
-  --accent: #f2677f;
-  --accent-text: #c93a57;
-  --accent-soft: #fde3e8;
-  --glow-pink: #f7b6c2;
-  --glow-blue: #aebcf7;
-  --muted: #5b6478;
-  --border: #dce3f7;
+  --accent: #ff5c8a;
+  --accent-text: #d6336c;
+  --accent-soft: #ffe3ec;
+  --violet-soft: #e7e0ff;
+  --sky: #1d8fe0;
+  --sky-soft: #dcf0ff;
+  --amber: #b86e00;
+  --amber-soft: #fff0c9;
+  --mint: #0f9a78;
+  --mint-soft: #d6f5ea;
+  --glow-pink: #ffb3c8;
+  --glow-blue: #b6a8ff;
+  --muted: #5e5a86;
+  --border: #e0daf7;
   --star: #f5b83d;
   --success: #15803d;
   --success-soft: #dcfce7;
@@ -28,23 +35,33 @@
   --danger-soft: #fee2e2;
   --info: #1d4ed8;
   --info-soft: #dbeafe;
-  --ring: #6a7ae6;
+  --ring: #6c4df6;
+  --panel-from: #4b2fd0;
+  --panel-to: #8a3ffc;
+  --footer: #2a1b76;
 }
 
 .dark {
-  --background: #0f1320;
-  --surface: #151b2e;
-  --card: #181f33;
-  --ink: #eef1fa;
-  --primary: #eef1fa;
-  --primary-foreground: #0f1320;
-  --accent: #f2677f;
-  --accent-text: #f58ca0;
-  --accent-soft: #3a1f2b;
-  --glow-pink: #6d2a3d;
-  --glow-blue: #2c3a7a;
-  --muted: #9aa4bd;
-  --border: #2a3350;
+  --background: #12102b;
+  --surface: #1a1740;
+  --card: #211e4a;
+  --ink: #f1eeff;
+  --primary: #8b73ff;
+  --primary-foreground: #ffffff;
+  --accent: #ff7aa2;
+  --accent-text: #ff9bb8;
+  --accent-soft: #3d1f3a;
+  --violet-soft: #2e2870;
+  --sky: #5cc0ff;
+  --sky-soft: #13334f;
+  --amber: #ffc24d;
+  --amber-soft: #3f3213;
+  --mint: #4fe0b9;
+  --mint-soft: #123c33;
+  --glow-pink: #7a2b52;
+  --glow-blue: #3b2f9a;
+  --muted: #a8a3d4;
+  --border: #322e66;
   --star: #f5b83d;
   --success: #4ade80;
   --success-soft: #14301f;
@@ -54,7 +71,10 @@
   --danger-soft: #3b1414;
   --info: #7aa2ff;
   --info-soft: #14244a;
-  --ring: #8c9aff;
+  --ring: #a99bff;
+  --panel-from: #3a24a8;
+  --panel-to: #6d2fd0;
+  --footer: #0c0a22;
 }
 
 @theme inline {
@@ -67,6 +87,14 @@
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
   --color-accent-soft: var(--accent-soft);
+  --color-violet-soft: var(--violet-soft);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-footer: var(--footer);
   --color-glow-pink: var(--glow-pink);
   --color-glow-blue: var(--glow-blue);
   --color-muted: var(--muted);
@@ -80,12 +108,30 @@
   --color-danger-soft: var(--danger-soft);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
-  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
 }
 
 html {
   scroll-behavior: smooth;
+}
+/* Instrument Serif ships a single weight: never synthesise bold. */
+h1, h2 {
+  font-family: var(--font-serif);
+  font-weight: 400 !important;
+  font-synthesis: none;
+  letter-spacing: -0.01em;
+}
+.panel-gradient {
+  background: linear-gradient(120deg, var(--panel-from), var(--panel-to) 60%, #e0488a);
+  color: #fff;
+}
+.text-gradient {
+  background: linear-gradient(90deg, #6c4df6, #ff5c8a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 body {
   background: var(--background);
@@ -113,6 +159,6 @@ body {
 
 @keyframes acc-down { from { height: 0; opacity: 0; } to { height: var(--radix-accordion-content-height); opacity: 1; } }
 @keyframes acc-up { from { height: var(--radix-accordion-content-height); opacity: 1; } to { height: 0; opacity: 0; } }
-@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }

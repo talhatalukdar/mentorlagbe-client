@@ -18,7 +18,7 @@ export default function HowItWorksPage() {
         {flows.map((f) => (
           <section key={f.title} className="rounded-2xl border border-border bg-card p-6">
             <h2 className="text-xl font-semibold">{f.title}</h2>
-            <ol className="mt-4 space-y-3 text-sm text-muted">{f.steps.map((s, i) => <li key={s} className="flex gap-3"><span className="grid size-6 shrink-0 place-items-center rounded-full bg-surface font-mono text-xs font-bold text-ink">{i + 1}</span><span>{s}</span></li>)}</ol>
+            <ol className="mt-4 space-y-3 text-sm text-muted">{f.steps.map((s, i) => <li key={s} className="flex gap-3"><span className="grid size-6 shrink-0 place-items-center rounded-full bg-violet-soft text-xs font-bold text-primary">{i + 1}</span><span>{s}</span></li>)}</ol>
           </section>
         ))}
       </div>

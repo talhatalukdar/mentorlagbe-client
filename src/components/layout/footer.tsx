@@ -19,30 +19,30 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="mt-24 bg-[#1b2131] text-slate-200 dark:bg-[#0b0f1a]">
+    <footer className="mt-24 bg-footer text-indigo-100">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <Logo className="text-white" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">{SITE.tagline} MentorLagbe connects students and guardians with tutors for online and home tuition across Bangladesh.</p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-indigo-200/80">{SITE.tagline} MentorLagbe connects students and guardians with tutors for online and home tuition across Bangladesh.</p>
           <div className="mt-6 flex gap-2">
             {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="grid size-10 place-items-center rounded-full border border-white/15 transition-colors hover:border-accent hover:text-accent">{s.icon}</a>
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="grid size-10 place-items-center rounded-full border border-white/15 transition-colors hover:border-accent hover:bg-accent hover:text-white">{s.icon}</a>
             ))}
           </div>
         </div>
         {sections.map((s) => (
           <div key={s.title}>
-            <h3 className="font-mono text-sm font-semibold text-white">{s.title}</h3>
+            <h3 className="text-sm font-semibold text-white">{s.title}</h3>
             <ul className="mt-4 space-y-3 text-sm">
               {s.links.map(([label, href]) => (
-                <li key={href + label}><Link href={href!} className="text-slate-400 transition-colors hover:text-white">{label}</Link></li>
+                <li key={href + label}><Link href={href!} className="text-indigo-200/80 transition-colors hover:text-white">{label}</Link></li>
               ))}
             </ul>
           </div>
         ))}
         <div>
-          <h3 className="font-mono text-sm font-semibold text-white">Contact</h3>
-          <ul className="mt-4 space-y-3 text-sm text-slate-400">
+          <h3 className="text-sm font-semibold text-white">Contact</h3>
+          <ul className="mt-4 space-y-3 text-sm text-indigo-200/80">
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 size-4 shrink-0" aria-hidden /> {SITE.location}</li>
             <li className="flex items-center gap-3"><Phone className="size-4 shrink-0" aria-hidden /> {SITE.phone}</li>
             <li className="flex items-center gap-3"><Mail className="size-4 shrink-0" aria-hidden /> {SITE.email}</li>

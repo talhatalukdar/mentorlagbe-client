@@ -4,14 +4,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-full font-mono text-sm font-medium transition-all duration-200 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
+  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground hover:opacity-90 hover:shadow-lg hover:shadow-primary/20",
-        accent: "bg-accent text-white hover:brightness-95 hover:shadow-lg hover:shadow-accent/30",
-        outline: "border border-border bg-card text-ink hover:border-ink/40 hover:bg-surface",
-        ghost: "text-ink hover:bg-surface",
+        primary: "bg-gradient-to-r from-primary to-[#9a5cff] text-white hover:brightness-110",
+        accent: "bg-gradient-to-r from-accent to-[#ff8a5c] text-white hover:brightness-105",
+        outline: "border border-border bg-card text-ink hover:border-primary hover:text-primary",
+        ghost: "text-ink hover:bg-violet-soft hover:text-primary",
         danger: "bg-danger-soft text-danger hover:brightness-95",
       },
       size: { sm: "h-9 px-4", md: "h-11 px-6", lg: "h-12 px-7 text-base", icon: "size-10" },

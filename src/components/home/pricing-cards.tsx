@@ -12,14 +12,14 @@ export function PricingCards() {
   return (
     <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
       {plans.map((p) => (
-        <div key={p.name} className={cn("relative flex flex-col rounded-3xl border p-8", p.highlight ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card")}>
+        <div key={p.name} className={cn("relative flex flex-col rounded-3xl border p-8", p.highlight ? "panel-gradient border-transparent shadow-xl shadow-primary/25" : "border-border bg-card")}>
           {p.highlight && <Badge tone="accent" className="absolute right-6 top-6">Most popular</Badge>}
           <h3 className="text-xl font-semibold">{p.name}</h3>
           <p className="mt-4 text-5xl font-bold tracking-tight">${p.price}<span className={cn("text-base font-normal", p.highlight ? "opacity-70" : "text-muted")}> /month</span></p>
           <ul className="mt-7 flex-1 space-y-3 text-sm">
-            {p.features.map((f) => (<li key={f} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />{f}</li>))}
+            {p.features.map((f) => (<li key={f} className="flex items-start gap-3"><span className={cn("mt-0.5 grid size-5 shrink-0 place-items-center rounded-full", p.highlight ? "bg-white/20 text-white" : "bg-mint-soft text-mint")}><Check className="size-3" aria-hidden /></span>{f}</li>))}
           </ul>
-          <p className={cn("mt-7 border-t pt-5 text-xs", p.highlight ? "border-white/20 opacity-70 dark:border-black/20" : "border-border text-muted")}>Free plan: {p.free.join(" · ")}</p>
+          <p className={cn("mt-7 border-t pt-5 text-xs", p.highlight ? "border-white/25 text-white/80" : "border-border text-muted")}>Free plan: {p.free.join(" · ")}</p>
           <UpgradeButton audience={p.audience} highlight={p.highlight} />
         </div>
       ))}

@@ -33,7 +33,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
     <div role="alert" className="rounded-2xl border border-danger/30 bg-danger-soft px-6 py-8 text-center">
       <p className="font-semibold text-danger">Couldn’t load this data</p>
       <p className="mt-1 text-sm text-danger/90">{message}</p>
-      {onRetry && <button onClick={onRetry} className="mt-4 rounded-full bg-danger px-5 py-2 font-mono text-sm text-white">Try again</button>}
+      {onRetry && <button onClick={onRetry} className="mt-4 rounded-full bg-danger px-5 py-2 text-sm font-semibold text-white">Try again</button>}
     </div>
   );
 }
