@@ -117,7 +117,7 @@ html {
   scroll-behavior: smooth;
 }
 /* Instrument Serif ships a single weight: never synthesise bold. */
-h1, h2 {
+h1, h2:not(.font-semibold) {
   font-family: var(--font-serif);
   font-weight: 400 !important;
   font-synthesis: none;
