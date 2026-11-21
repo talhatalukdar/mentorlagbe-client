@@ -18,23 +18,24 @@ export function SaveButton({ tuitionId, className }: { tuitionId: string; classN
   const { data: saved } = useQuery({ queryKey: ["saved"], queryFn: async () => (await api<Tuition[]>("/student/saved")).data, enabled: isStudent });
   const isSaved = !!saved?.some((t) => t._id === tuitionId);
 
+  // The variable is the action being performed (true = save), captured at click time so toasts/cache never read stale state.
   const toggle = useMutation({
-    mutationFn: () => api(`/student/saved/${tuitionId}`, { method: isSaved ? "DELETE" : "POST" }),
-    onMutate: async () => {
+    mutationFn: (save: boolean) => api(`/student/saved/${tuitionId}`, { method: save ? "POST" : "DELETE" }),
+    onMutate: async (save) => {
       await qc.cancelQueries({ queryKey: ["saved"] });
       const prev = qc.getQueryData<Tuition[]>(["saved"]);
-      qc.setQueryData<Tuition[]>(["saved"], (old = []) => (isSaved ? old.filter((t) => t._id !== tuitionId) : [...old, { _id: tuitionId } as Tuition]));
+      qc.setQueryData<Tuition[]>(["saved"], (old = []) => (save ? [...old, { _id: tuitionId } as Tuition] : old.filter((t) => t._id !== tuitionId)));
       return { prev };
     },
-    onError: (e, _v, ctx) => { qc.setQueryData(["saved"], ctx?.prev); toast.error(e.message); },
-    onSuccess: () => { toast.success(isSaved ? "Removed from saved" : "Saved to your list"); void qc.invalidateQueries({ queryKey: ["saved"] }); },
+    onError: (e, _save, ctx) => { qc.setQueryData(["saved"], ctx?.prev); toast.error(e.message); },
+    onSuccess: (_d, save) => { toast.success(save ? "Saved to your list" : "Removed from saved"); void qc.invalidateQueries({ queryKey: ["saved"] }); },
   });
 
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!session) { toast.info("Sign in as a student to save tuitions"); router.push("/sign-in"); return; }
     if (!isStudent) { toast.info("Only student accounts can save tuitions"); return; }
-    toggle.mutate();
+    toggle.mutate(!isSaved);
   };
 
   return (
