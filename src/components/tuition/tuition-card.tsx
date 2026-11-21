@@ -26,7 +26,7 @@ export function TuitionCard({ t }: { t: Tuition }) {
           <Badge>{t.classLevel}</Badge>
           {!!t.ratingCount && <span className="ml-auto inline-flex items-center gap-1 text-xs font-semibold"><Star className="size-3.5 fill-star text-star" />{t.ratingAvg?.toFixed(1)} <span className="font-normal text-muted">({t.ratingCount})</span></span>}
         </div>
-        <h3 className="mt-3 line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug"><Link href={`/tuitions/${t._id}`} className="after:absolute after:inset-0 hover:text-primary" style={{ position: "static" }}>{t.title}</Link></h3>
+        <h3 className="mt-3 line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug"><Link href={`/tuitions/${t._id}`} className="hover:text-primary">{t.title}</Link></h3>
         <ul className="mt-3 space-y-1.5 text-sm text-muted">
           <li className="flex items-center gap-2"><MapPin className="size-4 shrink-0" aria-hidden /><span className="truncate">{t.location}</span></li>
           <li className="flex items-center gap-2"><CalendarDays className="size-4 shrink-0" aria-hidden />{t.daysPerWeek} days / week</li>
