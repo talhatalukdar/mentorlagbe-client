@@ -1,6 +1,6 @@
 import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
-import { HeroIllustration } from "@/components/home/hero-illustration";
+import { HeroArches } from "@/components/home/hero-arches";
 
 export function AuthShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
@@ -13,9 +13,9 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
           <div className="mt-8">{children}</div>
         </div>
       </div>
-      <div className="relative hidden items-center justify-center overflow-hidden bg-surface lg:flex">
+      <div className="relative hidden items-center justify-center overflow-hidden wash wash-lilac bg-surface lg:flex">
         <div className="glow absolute inset-0" aria-hidden />
-        <HeroIllustration className="relative w-full max-w-lg text-ink" />
+        <div className="relative w-full max-w-md px-6"><HeroArches /></div>
       </div>
     </div>
   );

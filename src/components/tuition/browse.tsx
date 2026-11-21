@@ -51,7 +51,7 @@ export function Browse() {
   return (
     <div className="mx-auto max-w-7xl px-4 pb-8 pt-6 sm:px-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Browse tuitions</h1>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Browse tuitions</h1>
         <p className="mt-2 text-muted">Approved, active listings from tutors across Bangladesh.</p>
       </div>
 

@@ -17,7 +17,7 @@ export function SubjectVisual({ subject, className = "" }: { subject: string; cl
   return (
     <div className={`relative grid place-items-center overflow-hidden ${className}`} style={{ background: `linear-gradient(135deg, ${from}, ${to})` }} aria-hidden>
       <div className="absolute -right-8 -top-8 size-32 rounded-full bg-white/40 blur-2xl" />
-      <span className="px-4 text-center font-serif text-4xl leading-none text-[#1d1a45]/35 sm:text-5xl">{subject}</span>
+      <span className="px-4 text-center font-display text-5xl font-bold leading-none text-[#141a2e]/30 sm:text-6xl">{subject}</span>
     </div>
   );
 }

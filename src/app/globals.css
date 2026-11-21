@@ -1,15 +1,16 @@
 @import "tailwindcss";
-@import "@fontsource-variable/instrument-sans";
-@import "@fontsource/instrument-serif";
+@import "@fontsource-variable/inter";
+@import "@fontsource/barlow-condensed/600.css";
+@import "@fontsource/barlow-condensed/700.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Design tokens — palette derived from the primary visual reference (lavender canvas, ink-navy, coral). */
 :root {
-  --background: #f6f3ff;
-  --surface: #ece6ff;
+  --background: #f8fafc;
+  --surface: #eef3f8;
   --card: #ffffff;
-  --ink: #1d1a45;
+  --ink: #141a2e;
   --primary: #6c4df6;
   --primary-foreground: #ffffff;
   --accent: #ff5c8a;
@@ -25,7 +26,7 @@
   --glow-pink: #ffb3c8;
   --glow-blue: #b6a8ff;
   --muted: #5e5a86;
-  --border: #e0daf7;
+  --border: #e2e8f0;
   --star: #f5b83d;
   --success: #15803d;
   --success-soft: #dcfce7;
@@ -108,8 +109,8 @@
   --color-danger-soft: var(--danger-soft);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
-  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -118,11 +119,13 @@ html {
 }
 /* Instrument Serif ships a single weight: never synthesise bold. */
 h1, h2:not(.font-semibold) {
-  font-family: var(--font-serif);
-  font-weight: 400 !important;
+  font-family: var(--font-display);
+  font-weight: 700 !important;
   font-synthesis: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
+  line-height: 0.98;
 }
+h1 { line-height: 0.95; }
 .panel-gradient {
   background: linear-gradient(120deg, var(--panel-from), var(--panel-to) 60%, #e0488a);
   color: #fff;
@@ -162,3 +165,16 @@ body {
 @keyframes rise { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+
+/* Soft corner colour washes, section by section (airy, like the BookNook hero). */
+.wash { position: relative; isolation: isolate; }
+.wash::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(55% 65% at var(--wx1, 100%) var(--wy1, 0%), var(--wa, #d9f1f8) 0%, transparent 70%),
+    radial-gradient(40% 50% at var(--wx2, 0%) var(--wy2, 100%), var(--wb, #efe7ff) 0%, transparent 72%); }
+.wash-cyan { --wa: #d6f0f7; --wb: #efe7ff; }
+.wash-lilac { --wa: #e8e0ff; --wb: #d6f0f7; --wx1: 0%; --wy1: 0%; --wx2: 100%; --wy2: 100%; }
+.wash-pink { --wa: #ffe2ea; --wb: #fff0cf; }
+.wash-mint { --wa: #d6f5ea; --wb: #dbeeff; --wx1: 0%; --wy1: 100%; --wx2: 100%; --wy2: 0%; }
+.wash-amber { --wa: #fff0cf; --wb: #ffe2ea; --wx1: 100%; --wy1: 100%; --wx2: 0%; --wy2: 0%; }
+.dark .wash::before { opacity: 0.22; }

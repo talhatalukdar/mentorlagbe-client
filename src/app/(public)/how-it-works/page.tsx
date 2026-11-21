@@ -12,7 +12,7 @@ const flows = [
 export default function HowItWorksPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight">How MentorLagbe works</h1>
+      <h1 className="text-5xl font-bold tracking-tight">How MentorLagbe works</h1>
       <p className="mt-3 max-w-2xl text-muted">One platform for students looking for tutors and tutors looking for students, with admin moderation to keep listings trustworthy.</p>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {flows.map((f) => (

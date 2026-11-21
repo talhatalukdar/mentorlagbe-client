@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, GraduationCap, MessageSquareText, Search, ShieldCheck, Star, UserRoundCheck, Wallet } from "lucide-react";
 import { serverApi } from "@/lib/api";
 import type { Tuition } from "@/types/api";
-import { HeroIllustration } from "@/components/home/hero-illustration";
+import { HeroArches } from "@/components/home/hero-arches";
 import { TuitionCard } from "@/components/tuition/tuition-card";
 import { SubjectImage } from "@/components/tuition/subject-image";
 import { Reveal } from "@/components/motion/reveal";
@@ -38,31 +38,28 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pb-24 lg:pt-14">
+      <section className="wash wash-cyan overflow-hidden">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-20 pt-8 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pb-28 lg:pt-16">
           <div className="animate-[rise_0.7s_ease-out_both]">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl">
               Find your <Hl tone="gradient">ideal tutor</Hl> or <Hl tone="sky">mentorship</Hl> <Hl tone="pink">batch</Hl> today
             </h1>
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted">Search verified tuition listings across Bangladesh by subject, class level and budget — online from home or offline near you.</p>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">Search verified tuition listings across Bangladesh by subject, class level and budget — online from home or offline near you.</p>
             <HeroSearch />
             <div className="mt-8 flex items-center gap-4 text-sm text-muted">
               <span className="grid size-11 place-items-center rounded-xl bg-amber-soft"><Star className="size-5 fill-star text-star" aria-hidden /></span>
               <p>{totalListings > 0 ? <><strong className="text-ink">{totalListings} approved tuitions</strong> across {counts.size} subjects are open right now.</> : "Approved tuition listings appear here as soon as tutors post them."}</p>
             </div>
           </div>
-          <div className="relative animate-[rise_0.9s_0.1s_ease-out_both]">
-            <div className="glow absolute inset-0 scale-110" aria-hidden />
-            <HeroIllustration className="relative z-10 mx-auto w-full max-w-xl text-ink" />
-          </div>
+          <div className="animate-[rise_0.9s_0.1s_ease-out_both] pb-4"><HeroArches /></div>
         </div>
       </section>
 
       {/* Featured */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <section className="wash wash-lilac"><div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="text-4xl sm:text-5xl">Latest <Hl tone="violet">approved</Hl> <Hl tone="pink">tuitions</Hl></h2>
+            <h2 className="text-5xl sm:text-6xl">Latest <Hl tone="violet">approved</Hl> <Hl tone="pink">tuitions</Hl></h2>
             <p className="mt-2 max-w-xl text-muted">Freshly posted batches and one-to-one mentorship from tutors across the country.</p>
           </div>
           <ButtonLink href="/tuitions" variant="outline">Browse all tuitions <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></ButtonLink>
@@ -74,12 +71,12 @@ export default async function HomePage() {
         ) : (
           <div className="mt-10"><EmptyState icon={<Search className="size-6" />} title="No tuitions to show yet" description="Approved listings will appear here. If you expected to see some, the server may be starting up — try again in a moment." action={<ButtonLink href="/tuitions" variant="outline">Open Browse Tuitions</ButtonLink>} /></div>
         )}
-      </section>
+      </div></section>
 
       {/* Subjects — photo tiles */}
-      <section className="bg-gradient-to-b from-violet-soft/70 to-transparent py-16">
+      <section className="wash wash-pink py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <Reveal><h2 className="text-4xl sm:text-5xl">Browse by <Hl tone="sky">subject</Hl></h2><p className="mt-2 text-muted">Counts show approved tuitions currently open.</p></Reveal>
+          <Reveal><h2 className="text-5xl sm:text-6xl">Browse by <Hl tone="sky">subject</Hl></h2><p className="mt-2 text-muted">Counts show approved tuitions currently open.</p></Reveal>
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {SUBJECTS.map((s, i) => (
               <Reveal key={s} delay={(i % 3) * 0.05} className="h-full">
@@ -98,8 +95,8 @@ export default async function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <Reveal className="mx-auto max-w-2xl text-center"><h2 className="text-4xl sm:text-5xl">How <Hl tone="gradient">MentorLagbe</Hl> works</h2><p className="mt-2 text-muted">From search to first class in four steps. Tutors post a batch, students apply, and an admin keeps listings trustworthy.</p></Reveal>
+      <section className="wash wash-mint"><div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <Reveal className="mx-auto max-w-2xl text-center"><h2 className="text-5xl sm:text-6xl">How <Hl tone="gradient">MentorLagbe</Hl> works</h2><p className="mt-2 text-muted">From search to first class in four steps. Tutors post a batch, students apply, and an admin keeps listings trustworthy.</p></Reveal>
         <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map(({ Icon, title, text, badge, soft }, i) => (
             <Reveal key={title} delay={i * 0.06} className="h-full">
@@ -113,20 +110,20 @@ export default async function HomePage() {
           ))}
         </ol>
         <Reveal className="mt-8 text-center"><ButtonLink href="/how-it-works" variant="ghost">See the full workflow for students and tutors <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></ButtonLink></Reveal>
-      </section>
+      </div></section>
 
       {/* Trust */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="panel-gradient grid gap-8 rounded-3xl p-8 sm:grid-cols-3 sm:p-12">
-          {[{ Icon: ShieldCheck, t: "Admin-reviewed listings", d: "Nothing goes public until an admin approves it.", c: "bg-white/20" }, { Icon: BadgeCheck, t: "Verified tutor badge", d: "Admins mark tutors whose details they have checked.", c: "bg-amber/90" }, { Icon: Wallet, t: "Transparent pricing", d: "Free to browse and apply. Pro plans are billed through Stripe.", c: "bg-mint/90" }].map(({ Icon, t, d, c }) => (
-            <div key={t}><span className={`grid size-12 place-items-center rounded-xl text-white ${c}`}><Icon className="size-6" aria-hidden /></span><h3 className="mt-4 text-2xl">{t}</h3><p className="mt-1 text-sm text-white/80">{d}</p></div>
+      <section className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+        <div className="grid gap-5 sm:grid-cols-3">
+          {[{ Icon: ShieldCheck, t: "Admin-reviewed listings", d: "Nothing goes public until an admin approves it.", c: "bg-violet-soft text-primary" }, { Icon: BadgeCheck, t: "Verified tutor badge", d: "Admins mark tutors whose details they have checked.", c: "bg-amber-soft text-amber" }, { Icon: Wallet, t: "Transparent pricing", d: "Free to browse and apply. Pro plans are billed through Stripe.", c: "bg-mint-soft text-mint" }].map(({ Icon, t, d, c }) => (
+            <Reveal key={t} className="h-full"><div className="h-full rounded-2xl border border-border bg-card p-7"><span className={`grid size-12 place-items-center rounded-xl ${c}`}><Icon className="size-6" aria-hidden /></span><h3 className="mt-4 text-lg font-semibold">{t}</h3><p className="mt-1 text-sm text-muted">{d}</p></div></Reveal>
           ))}
         </div>
       </section>
 
       {/* Testimonials (clearly labelled sample content) */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <Reveal className="flex flex-wrap items-center gap-3"><h2 className="text-4xl sm:text-5xl">What <Hl tone="pink">people</Hl> say</h2><Badge tone="warning">Sample content</Badge></Reveal>
+      <section className="wash wash-amber"><div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <Reveal className="flex flex-wrap items-center gap-3"><h2 className="text-5xl sm:text-6xl">What <Hl tone="pink">people</Hl> say</h2><Badge tone="warning">Sample content</Badge></Reveal>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {sampleTestimonials.map((t, i) => (
             <Reveal key={t.who} delay={i * 0.06} className="h-full">
@@ -138,31 +135,31 @@ export default async function HomePage() {
             </Reveal>
           ))}
         </div>
-      </section>
+      </div></section>
 
       {/* Pricing */}
-      <section className="bg-gradient-to-b from-accent-soft/60 via-violet-soft/60 to-transparent py-20">
+      <section className="wash wash-cyan py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <Reveal className="mx-auto mb-12 max-w-2xl text-center"><h2 className="text-4xl sm:text-5xl">Simple plans for <Hl tone="violet">students</Hl> and <Hl tone="mint">tutors</Hl></h2><p className="mt-2 text-muted">Start free. Upgrade when you need more.</p></Reveal>
+          <Reveal className="mx-auto mb-12 max-w-2xl text-center"><h2 className="text-5xl sm:text-6xl">Simple plans for <Hl tone="violet">students</Hl> and <Hl tone="mint">tutors</Hl></h2><p className="mt-2 text-muted">Start free. Upgrade when you need more.</p></Reveal>
           <PricingCards />
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <Reveal className="mb-10 text-center"><h2 className="text-4xl sm:text-5xl">Frequently asked <Hl tone="amber">questions</Hl></h2></Reveal>
+      <section className="wash wash-lilac"><div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <Reveal className="mb-10 text-center"><h2 className="text-5xl sm:text-6xl">Frequently asked <Hl tone="amber">questions</Hl></h2></Reveal>
         <Faq />
-      </section>
+      </div></section>
 
       {/* Final CTA */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6">
-        <Reveal className="panel-gradient relative overflow-hidden rounded-3xl px-6 py-16 text-center sm:px-12">
-          <div className="glow absolute inset-0 opacity-30" aria-hidden />
+      <section className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center sm:px-12">
+          <div className="glow absolute inset-0 opacity-60" aria-hidden />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl text-4xl sm:text-5xl">Ready to find the right tutor — or your next students?</h2>
+            <h2 className="mx-auto max-w-3xl text-5xl sm:text-6xl">Ready to find the <Hl tone="gradient">right tutor</Hl> — or your <Hl tone="sky">next students</Hl>?</h2>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <ButtonLink href="/tuitions" variant="accent" size="lg">Find a tutor</ButtonLink>
-              <ButtonLink href="/sign-up" variant="outline" size="lg" className="border-white/40 bg-transparent text-white hover:bg-white/15 hover:text-white">Become a tutor</ButtonLink>
+              <ButtonLink href="/tuitions" size="lg">Find a tutor</ButtonLink>
+              <ButtonLink href="/sign-up" variant="outline" size="lg">Become a tutor</ButtonLink>
             </div>
           </div>
         </Reveal>
