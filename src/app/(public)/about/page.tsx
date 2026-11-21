@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "About" };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <div className="wash wash-pink"><div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <h1 className="text-5xl font-bold tracking-tight">About MentorLagbe</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-muted">
         <p>Students and parents in Bangladesh often search for tutors through scattered social media groups and word of mouth. Skilled tutors, meanwhile, have no structured place to show their batches and manage enrolments.</p>
@@ -13,6 +13,6 @@ export default function AboutPage() {
         <p>The platform is free to browse and apply. Tutors and students can upgrade to Pro plans billed through Stripe.</p>
       </div>
       <ButtonLink href="/tuitions" className="mt-8">Browse tuitions</ButtonLink>
-    </div>
+    </div></div>
   );
 }

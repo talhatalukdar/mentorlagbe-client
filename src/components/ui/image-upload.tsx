@@ -36,7 +36,7 @@ export function ImageUpload({ value, onChange, label, shape = "wide", disabled }
         {progress !== null && <span className="absolute inset-0 grid place-items-center bg-black/55 text-white"><span className="flex flex-col items-center gap-2 text-sm"><Loader2 className="size-5 animate-spin" />Uploading {progress}%</span></span>}
       </button>
       <input ref={input} type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => void onFile(e.target.files?.[0])} />
-      <p className="mt-1.5 text-xs text-muted">JPG, PNG or WebP, up to 5MB.</p>
+      {shape === "wide" && <p className="mt-1.5 text-xs text-muted">JPG, PNG or WebP, up to 5MB.</p>}
     </div>
   );
 }

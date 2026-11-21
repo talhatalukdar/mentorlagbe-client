@@ -112,7 +112,7 @@ export default function ProfilePage() {
             <Section title="Teaching profile" description="Helps students decide whether you are the right tutor.">
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Subjects you teach" htmlFor="subjects" hint="Separate with commas"><Input id="subjects" placeholder="Physics, Mathematics" {...register("subjects")} /></Field>
-                <Field label="Hourly rate (৳)" htmlFor="hourlyRate" error={errors.hourlyRate?.message}><Input id="hourlyRate" inputMode="numeric" {...register("hourlyRate")} /></Field>
+                <Field label="Hourly rate (BDT)" htmlFor="hourlyRate" error={errors.hourlyRate?.message}><Input id="hourlyRate" inputMode="numeric" {...register("hourlyRate")} /></Field>
                 <Field label="Education" htmlFor="education"><Input id="education" placeholder="e.g. BSc in Physics, Dhaka University" {...register("education")} /></Field>
                 <Field label="Experience" htmlFor="experience"><Input id="experience" placeholder="e.g. 5 years teaching HSC Physics" {...register("experience")} /></Field>
                 <div className="sm:col-span-2"><Field label="Availability" htmlFor="availability"><Input id="availability" placeholder="e.g. Weekday evenings, weekends" {...register("availability")} /></Field></div>

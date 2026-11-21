@@ -35,7 +35,7 @@ export function TuitionForm({ initial, submitLabel, onSubmit, loading }: { initi
       <Field label="Class level" htmlFor="classLevel" error={errors.classLevel?.message}><Select id="classLevel" defaultValue="" {...register("classLevel")}><option value="" disabled>Select class level</option>{CLASS_LEVELS.map((s) => <option key={s}>{s}</option>)}</Select></Field>
       <Field label="Mode" htmlFor="mode" error={errors.mode?.message}><Select id="mode" {...register("mode")}><option>Online</option><option>Offline</option></Select></Field>
       <Field label="Location" htmlFor="location" error={errors.location?.message}><Input id="location" placeholder="e.g. Mirpur, Dhaka or Online (Zoom)" {...register("location")} /></Field>
-      <Field label="Monthly fee (৳)" htmlFor="monthlyFee" error={errors.monthlyFee?.message}><Input id="monthlyFee" type="number" inputMode="numeric" min={0} {...register("monthlyFee")} /></Field>
+      <Field label="Monthly fee (BDT)" htmlFor="monthlyFee" error={errors.monthlyFee?.message}><Input id="monthlyFee" type="number" inputMode="numeric" min={0} {...register("monthlyFee")} /></Field>
       <Field label="Days per week" htmlFor="daysPerWeek" error={errors.daysPerWeek?.message}><Input id="daysPerWeek" type="number" min={1} max={7} {...register("daysPerWeek")} /></Field>
       <div className="sm:col-span-2"><Field label="Schedule (optional)" htmlFor="schedule" error={errors.schedule?.message}><Input id="schedule" placeholder="e.g. Sat, Mon, Wed — 6:00 PM" {...register("schedule")} /></Field></div>
       <div className="sm:col-span-2"><Field label="Description" htmlFor="description" error={errors.description?.message}><Textarea id="description" className="min-h-36" {...register("description")} /></Field></div>
