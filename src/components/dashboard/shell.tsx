@@ -99,7 +99,7 @@ export function DashboardShell({ user, children }: { user: User; children: React
           </div>
           <div className="flex items-center gap-3"><ThemeToggle /><div className="hidden items-center gap-2 sm:flex"><Avatar user={me} size={34} /><div className="leading-tight"><p className="text-sm font-semibold">{me.name}</p><p className="text-xs capitalize text-muted">{me.role}</p></div></div></div>
         </header>
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
+        <main className="wash wash-lilac flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );
