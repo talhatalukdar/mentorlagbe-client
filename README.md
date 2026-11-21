@@ -40,3 +40,14 @@ Set `API_URL` to the deployed API URL and `NEXT_PUBLIC_SITE_URL` to the site URL
 - Testimonials on the home page are clearly labelled sample content.
 - Contact details in the footer (`src/lib/site.ts`) are placeholders.
 - No end-to-end browser test suite yet; flows were checked manually in headless Firefox.
+
+## Typography and look
+Headings use **Barlow Condensed**, body text uses **Inter** (self-hosted through `@fontsource`, no external font requests). Backgrounds are light with soft pastel corner washes per section (`.wash` utilities in `globals.css`); accents are violet, pink, sky, amber and mint. Subject photos are free-to-use Pexels images (`src/lib/subject-photos.ts`) with a gradient fallback if an image fails to load.
+
+## Browser tests (headless Firefox + Selenium)
+```bash
+pip install selenium            # plus Firefox and geckodriver on PATH, or FIREFOX_BIN / GECKODRIVER_BIN
+# with the API seeded and the client running on :3000
+python e2e/browse.py
+E2E_ADMIN_EMAIL=… E2E_ADMIN_PASSWORD=… E2E_DEMO_PASSWORD=… python e2e/flows.py
+```
